@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Searchbar from "../../../components/searchbar";
 import { spacing } from "../../../utils/spacing";
-import { RestaurantInfo } from "../components/restaurant.components";
+import { RestaurantInfoCard } from "../components/restaurant-info-card.components";
 
 const isAndroid = Platform.OS === "android";
 
@@ -17,7 +17,7 @@ const RestaurantsScreen: FC = () => {
     <SafeAreaView style={styles.container}>
       <Searchbar />
       <View style={styles.listContainer}>
-        <RestaurantInfo />
+        <RestaurantInfoCard />
       </View>
     </SafeAreaView>
   );
