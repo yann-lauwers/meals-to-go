@@ -1,12 +1,19 @@
 import { FC } from "react";
-import { StyleSheet } from "react-native";
 import { Card } from "react-native-paper";
-import { spacing } from "../../../utils/spacing";
 import styled from "styled-components/native";
 
+const RestaurantCard = styled(Card)`
+  background-color: white;
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  padding: ${(props) => props.theme.space[3]};
+  background-color: white;
+`;
+
 const Title = styled.Text`
-  padding: ${spacing.PADDING.base}px;
-  color: red;
+  padding: ${(props) => props.theme.space[3]};
+  color: ${(props) => props.theme.colors.ui.primary};
 `;
 
 const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
@@ -20,16 +27,11 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
     isClosedTemporarily,
   } = restaurant;
   return (
-    <Card elevation={5} style={styles.card}>
-      <Card.Cover style={styles.cover} source={{ uri: photos[0] }} />
-      <Title>Card title</Title>
-    </Card>
+    <RestaurantCard elevation={5}>
+      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <Title>{name}</Title>
+    </RestaurantCard>
   );
 };
-
-const styles = StyleSheet.create({
-  card: { backgroundColor: "white" },
-  cover: { padding: 20, backgroundColor: "white" },
-});
 
 export { RestaurantInfoCard };
