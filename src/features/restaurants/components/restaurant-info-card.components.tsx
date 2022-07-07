@@ -83,15 +83,23 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClosedTemporarily && <Closed>CLOSED TEMPORARILY</Closed>}
-            <Spacer variant="left.large" />
-            {isOpenNow && <SvgXml width="20" height="20" xml={open} />}
-            <View style={{ paddingLeft: 16 }} />
-            <Image
-              style={{ height: 15, width: 15 }}
-              key={icon}
-              source={{ uri: icon }}
-            />
+            {isClosedTemporarily && (
+              <Spacer position="left" size="large">
+                <Closed>CLOSED TEMPORARILY</Closed>
+              </Spacer>
+            )}
+            {isOpenNow && (
+              <Spacer position="left" size="large">
+                <SvgXml width="20" height="20" xml={open} />
+              </Spacer>
+            )}
+            <Spacer position="left" size="large">
+              <Image
+                style={{ height: 15, width: 15 }}
+                key={icon}
+                source={{ uri: icon }}
+              />
+            </Spacer>
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
