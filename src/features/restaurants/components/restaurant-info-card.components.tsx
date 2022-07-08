@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import styled from "styled-components/native";
@@ -78,8 +78,8 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
         <Title>{name}</Title>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml width="20" height="20" xml={star} />
+            {ratingArray.map((rate) => (
+              <SvgXml key={rate} width="20" height="20" xml={star} />
             ))}
           </Rating>
           <SectionEnd>

@@ -1,8 +1,16 @@
-import styled, { DefaultTheme } from "styled-components/native";
-
-const sizeVariant = { small: 1, medium: 2, large: 3 };
+import { FC } from "react";
+import styled, { DefaultTheme, useTheme } from "styled-components/native";
 
 type Sizes = keyof typeof sizeVariant;
+
+type Positions = keyof typeof positionVariant;
+
+type SpacerProps = {
+  position: Positions;
+  size: Sizes;
+};
+
+const sizeVariant = { small: 1, medium: 2, large: 3 };
 
 const positionVariant = {
   top: "marginTop",
@@ -10,8 +18,6 @@ const positionVariant = {
   bottom: "marginBottom",
   left: "marginLeft",
 };
-
-type Positions = keyof typeof positionVariant;
 
 const getVariant: (
   position: Positions,
@@ -24,17 +30,15 @@ const getVariant: (
   return `${property}:${value}`;
 };
 
-export const Spacer = styled.View`
-  ${({
-    position,
-    size,
-    theme,
-  }: {
-    position: Positions;
-    size: Sizes;
-    theme: DefaultTheme;
-  }) => getVariant(position, size, theme)}
+export const SpacerView = styled.View`
+  ${({ variant }: { variant: string }) => variant}
 `;
+
+export const Spacer: FC<SpacerProps> = ({ position, size, children }) => {
+  const theme = useTheme();
+  const variant = getVariant(position, size, theme);
+  return <SpacerView variant={variant}>{children}</SpacerView>;
+};
 
 Spacer.defaultProps = {
   position: "top",
