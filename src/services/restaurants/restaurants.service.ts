@@ -1,4 +1,4 @@
-import { MocksKeys, mocks, MocksValues } from "./mock";
+import { MocksKeys, mocks, MocksValues, mockImages } from "./mock";
 import camelize, { Camelize } from "camelize-ts";
 
 export const restaurantsRequest: (location?: MocksKeys) => any = async (
@@ -21,12 +21,12 @@ type CustomResult = {
 export const restaurantsTransform: (
   results: MocksValues
 ) => Camelize<CustomResult[]> = ({ results = [] }) => {
-  console.log(results);
   const mappedResults = results.map((restaurant) => {
     return {
       ...restaurant,
       isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
       isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY",
+      photos: [mockImages[Math.ceil(Math.random() * (mockImages.length - 1))]],
     };
   });
   return camelize(mappedResults);

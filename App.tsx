@@ -20,6 +20,8 @@ import {
 import { Text } from "react-native";
 import SafeArea from "./src/components/utility/safe-area.component";
 import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
+import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 restaurantsRequest();
 
@@ -75,15 +77,19 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   return (
-    <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-          <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-        <ExpoStatusBar style="auto" />
-      </ThemeProvider>
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={screenOptions}>
+              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+            <ExpoStatusBar style="auto" />
+          </NavigationContainer>
+        </RestaurantContextProvider>
+      </LocationContextProvider>
+    </ThemeProvider>
   );
 }
