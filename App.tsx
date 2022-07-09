@@ -19,6 +19,9 @@ import {
 } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import SafeArea from "./src/components/utility/safe-area.component";
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
+
+restaurantsRequest();
 
 const MapScreen = () => {
   return (
