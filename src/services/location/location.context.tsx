@@ -34,8 +34,6 @@ export const LocationContextProvider: FC = ({ children }) => {
       .then(setLocation)
       .catch(setError)
       .finally(() => setIsLoading(false));
-
-    console.log(searchKeyword);
   };
 
   return (

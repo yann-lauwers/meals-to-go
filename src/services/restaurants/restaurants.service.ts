@@ -5,6 +5,7 @@ export const restaurantsRequest: (location?: MocksKeys) => any = async (
   location = "37.7749295,-122.4194155"
 ) => {
   return new Promise((resolve, reject) => {
+    console.log(location);
     const mock = mocks[location];
     if (!mock) {
       reject("not found");

@@ -36,9 +36,9 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
         <Title>{name}</Title>
         <Section>
           <Rating>
-            {ratingArray.map((rate) => (
-              <SvgXml key={rate} width="20" height="20" xml={star} />
-            ))}
+            {ratingArray.map((_, i) => {
+              return <SvgXml key={i} width="20" height="20" xml={star} />;
+            })}
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && (
