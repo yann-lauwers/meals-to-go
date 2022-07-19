@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import { Keys } from "./location.mock";
 import { locationRequest, locationTransform } from "./location.service";
 
@@ -25,16 +25,19 @@ export const LocationContextProvider: FC = ({ children }) => {
   const onSearch: (searchKeyword: Keys) => void = (searchKeyword) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
-    if (!searchKeyword.length) {
+  };
+
+  useEffect(() => {
+    if (!keyword.length) {
       // Don't do anything
       return;
     }
-    locationRequest(searchKeyword)
+    locationRequest(keyword)
       .then(locationTransform)
       .then(setLocation)
       .catch(setError)
       .finally(() => setIsLoading(false));
-  };
+  }, [keyword]);
 
   return (
     <LocationContext.Provider

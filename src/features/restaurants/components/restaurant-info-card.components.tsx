@@ -25,6 +25,7 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.ceil(rating)));
@@ -37,7 +38,14 @@ const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
         <Section>
           <Rating>
             {ratingArray.map((_, i) => {
-              return <SvgXml key={i} width="20" height="20" xml={star} />;
+              return (
+                <SvgXml
+                  key={`start-${placeId}-${i}`}
+                  width="20"
+                  height="20"
+                  xml={star}
+                />
+              );
             })}
           </Rating>
           <SectionEnd>
