@@ -1,4 +1,5 @@
 import { createContext, FC, useContext, useEffect, useState } from "react";
+import { RestaurantProps } from "../../features/restaurants/screens/restaurants.types";
 import { LocationContext } from "../location/location.context";
 import { MocksKeys } from "./mock";
 import {
@@ -7,7 +8,7 @@ import {
 } from "./restaurants.service";
 
 export const RestaurantContext = createContext<{
-  restaurants: number[];
+  restaurants: RestaurantProps[];
   isLoading: boolean;
   error: string | null;
 }>({

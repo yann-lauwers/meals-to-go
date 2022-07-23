@@ -4,6 +4,7 @@ import open from "../../../../assets/open";
 import star from "../../../../assets/star";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
+import { RestaurantProps } from "../screens/restaurants.types";
 import {
   Address,
   Icon,
@@ -16,7 +17,9 @@ import {
   Title,
 } from "./restaurant-info-card.styles";
 
-const RestaurantInfoCard: FC<{ restaurant: any }> = ({ restaurant = {} }) => {
+const RestaurantInfoCard: FC<{ restaurant: RestaurantProps }> = ({
+  restaurant,
+}) => {
   const {
     name = "some restaurant",
     icon = "https://picsum.photos/200/300",
