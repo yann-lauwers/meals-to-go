@@ -23,9 +23,9 @@ const LoadingContainer = styled.View`
   align-items: center;
 `;
 
-const RestaurantsScreen: FC<RestaurantsScreenNavigationProp<"Restaurants">> = ({
-  navigation,
-}) => {
+const RestaurantsScreen: FC<
+  RestaurantsScreenNavigationProp<"RestaurantsList">
+> = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantContext);
   return (
     <SafeArea>

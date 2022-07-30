@@ -13,7 +13,7 @@ type RestaurantProps = {
 };
 
 type RestaurantStackParamList = {
-  Restaurants: undefined;
+  RestaurantsList: undefined;
   RestaurantDetails: { restaurant: RestaurantProps };
   Feed: { sort: "latest" | "top" } | undefined;
 };
