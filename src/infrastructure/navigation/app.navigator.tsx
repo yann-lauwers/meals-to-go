@@ -14,14 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { RouteNames } from "./navigator.types";
 import { RestaurantsNavigator } from "./restaurants.navigator";
-
-const MapScreen = () => {
-  return (
-    <SafeArea>
-      <Text>Home!</Text>
-    </SafeArea>
-  );
-};
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 const SettingsScreen = () => {
   return (
