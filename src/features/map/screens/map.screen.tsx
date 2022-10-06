@@ -1,10 +1,18 @@
-import SafeArea from "../../../components/utility/safe-area.component";
+import { FC } from "react";
 import MapView from "react-native-maps";
+import styled from "styled-components/native";
+import { Search } from "../components/search.component";
 
-export const MapScreen = () => {
+const Map = styled(MapView)`
+  height: 100%;
+  width: 100%;
+`;
+
+export const MapScreen: FC = () => {
   return (
-    <SafeArea>
-      <MapView style={{ height: "100%" }} />
-    </SafeArea>
+    <>
+      <Search />
+      <Map />
+    </>
   );
 };
