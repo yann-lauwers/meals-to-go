@@ -2,17 +2,21 @@ import { useContext, useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
+import SafeArea from "../../../components/utility/safe-area.component";
 import { LocationContext } from "../../../services/location/location.context";
 import { Keys } from "../../../services/location/location.mock";
 
 const SearchContainer = styled.View`
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px;`}
-  padding-top: 20px;
-  top: 20px;
-  right: 20px;
-  left: 20px;
+  top: 0px;
+  right: 0px;
+  left: 0px;
   position: absolute;
   z-index: 100;
+`;
+
+const SearchSubContainer = styled.View`
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px;`}
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 export const Search = () => {
@@ -25,15 +29,19 @@ export const Search = () => {
 
   return (
     <SearchContainer>
-      <Searchbar
-        placeholder={"Search for a location"}
-        icon="map"
-        onChangeText={(text) => setSearchKeyword(text as Keys)}
-        value={searchKeyword}
-        onSubmitEditing={() => {
-          search(searchKeyword.toLowerCase() as Keys);
-        }}
-      />
+      <SafeArea>
+        <SearchSubContainer>
+          <Searchbar
+            placeholder="Search for a location"
+            icon="map"
+            onChangeText={(text) => setSearchKeyword(text as Keys)}
+            value={searchKeyword}
+            onSubmitEditing={() => {
+              search(searchKeyword.toLowerCase() as Keys);
+            }}
+          />
+        </SearchSubContainer>
+      </SafeArea>
     </SearchContainer>
   );
 };
