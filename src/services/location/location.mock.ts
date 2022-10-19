@@ -1,7 +1,3 @@
-export type Keys = keyof typeof locations;
-export type Values = typeof locations[Keys];
-export type Location = Values["results"];
-
 export const locations = {
   antwerp: {
     results: [

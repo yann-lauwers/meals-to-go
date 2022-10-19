@@ -1,9 +1,9 @@
 import { createContext, FC, useEffect, useState } from "react";
-import { Keys } from "./location.mock";
 import { locationRequest, locationTransform } from "./location.service";
+import { Keys, LocationTransformReturn } from "./location.types";
 
 export const LocationContext = createContext<{
-  location: { lng: number; lat: number } | null;
+  location: LocationTransformReturn | null;
   isLoading: boolean;
   error: string | null;
   keyword: Keys;

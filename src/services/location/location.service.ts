@@ -1,5 +1,6 @@
-import camelize, { Camelize } from "camelize-ts";
-import { Keys, locations, Values } from "./location.mock";
+import camelize from "camelize-ts";
+import { locations } from "./location.mock";
+import { Keys, LocationTransformReturn, Values } from "./location.types";
 
 export const locationRequest: (searchTerm: Keys) => any = async (
   searchTerm
@@ -13,11 +14,12 @@ export const locationRequest: (searchTerm: Keys) => any = async (
   });
 };
 
-export const locationTransform: (
-  result: Values
-) => Camelize<Values["results"][number]["geometry"]["location"]> = (result) => {
+export const locationTransform: (result: Values) => LocationTransformReturn = (
+  result
+) => {
   const formattedResponse = camelize(result);
   const { geometry } = formattedResponse.results[0];
   const { lat, lng } = geometry.location;
-  return { lat, lng };
+  const { viewport } = geometry;
+  return { lat, lng, viewport };
 };
